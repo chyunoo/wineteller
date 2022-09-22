@@ -1,9 +1,10 @@
 import os
 import pandas as pd
+import pathlib
 
-
-def get_data():
-    csv_path= os.path.join(os.path.dirname(os.path.dirname(__file__)),"raw_data")
-    file_names = os.listdir(csv_path)
-    data = pd.read_csv(csv_path,file_names)
+def get_data(name):
+    name = name+".csv"
+    csv_path= os.path.join(os.path.dirname(pathlib.Path().absolute()),"raw_data",name)
+    data = pd.read_csv(csv_path)
+    data = data.dropna()
     return data
