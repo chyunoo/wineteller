@@ -9,6 +9,10 @@ numpy
 pandas
 scikit-learn
 
+#NLP
+nltk
+gensim
+
 # tests/linter
 black
 coverage
