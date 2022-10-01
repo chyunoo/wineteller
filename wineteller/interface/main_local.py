@@ -32,7 +32,7 @@ def preprocess_and_train() :
     # retrieve wine review vectors
     wine_review_vectors = vectorize_reviews(cleaned, trained_w2v)
 
-    # merge in wine dataset
+    # merge with wine dataset
     vectorized_df = merge_review_vectors(wine_review_vectors, cleaned)
 
     print(vectorized_df.shape)
