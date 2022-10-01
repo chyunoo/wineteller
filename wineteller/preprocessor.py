@@ -55,6 +55,3 @@ def preprocess_text(data : pd.DataFrame) -> list :
     print("\n ✅ text processed")
 
     return preprocessed_text
-
-
-#### add executing time ####
