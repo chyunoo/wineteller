@@ -2,10 +2,10 @@ import numpy as np
 import pandas as pd
 import os
 
-from wineteller.import_data import get_data, clean_wine_data, get_test_data
-from wineteller.model import merge_review_vectors, vectorize_reviews, word_embeddings
-from wineteller.preprocessor import preprocess_text
-from wineteller.registry import save_model, load_model
+from wineteller.modeling.import_data import clean_wine_data, get_test_data
+from wineteller.modeling.model import merge_review_vectors, vectorize_reviews, word_embeddings
+from wineteller.modeling.preprocessor import preprocess_text
+from wineteller.modeling.registry import save_model, load_model
 
 def preprocess_and_train() :
     """
@@ -23,6 +23,8 @@ def preprocess_and_train() :
     # preprocess data
     df_pp = preprocess_text(cleaned)
 
+    #### remove sentences with zero descriptors ####
+
     # train model
     trained_w2v = word_embeddings(df_pp)
 
@@ -35,9 +37,23 @@ def preprocess_and_train() :
     # merge with wine dataset
     vectorized_df = merge_review_vectors(wine_review_vectors, cleaned)
 
+    # save into csv
+    csv_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                                "raw_data","preprocessed_data", "processed_full.csv")
+
+    vectorized_df.to_csv(csv_path,
+                         mode = "w",
+                         index=False)
+
+    ##### need to remerge with original dataset -> wine information ####
+
     print(vectorized_df.shape)
     print(vectorized_df.head())
 
+def summary() :
+    model = load_model()
+    print(model)
 
 if __name__ == '__main__':
     preprocess_and_train()
+    summary()
