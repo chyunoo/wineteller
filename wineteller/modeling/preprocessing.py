@@ -2,13 +2,14 @@ from nltk.stem import SnowballStemmer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 import string
-from os import lseek
 from nltk.tokenize import sent_tokenize, word_tokenize
 from gensim.models.phrases import Phrases, Phraser
 import pandas as pd
+import numpy as np
+
 
 from .params import MAPPING
-
+from .vectorize import useful_lists, vectorize_survey
 
 def tokenize_text(data : pd.DataFrame) -> list :
     """
@@ -145,3 +146,24 @@ def mapping_text(phrased_sentences : list) -> list:
         mapped_sentences.append(mapped_sentence)
 
     return mapped_sentences
+
+def specific_mapping(mp : pd.DataFrame, main_descriptors = ['body',
+                                            'complexity',
+                                            'finish',
+                                            'alcohol',
+                                            'sweetness']) -> dict :
+    """
+    filter wine descriptors mapping with list of main descriptors and save mapping
+    in dict format (descriptor_level_2 : descriptor_level_3)
+    """
+
+    filtered_descriptor_mapping = mp[mp['level_1'].isin(main_descriptors)]
+    # descriptors_list = list(filtered_descriptor_mapping["level_1"].unique())
+    # print(f"using {len(descriptors_list)} 🍷 descriptors : {descriptors_list}")
+    mapping = {}
+    for level_2_descriptor in filtered_descriptor_mapping["level_2"].unique() :
+        values_=[]
+        for level_3_descriptor in filtered_descriptor_mapping[filtered_descriptor_mapping["level_2"]==level_2_descriptor]["level_3"].unique():
+            values_.append(level_3_descriptor)
+            mapping[level_2_descriptor]=values_
+    return mapping
