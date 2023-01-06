@@ -1,10 +1,12 @@
 from gensim.models import Word2Vec
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import NearestNeighbors
 
-from wineteller.modeling.registry import load_model
+from wineteller.modeling.registry import load_model_knn
 from .params import MAPPING
 from .preprocessor import *
 from operator import itemgetter
+import copy
 
 def word_embeddings(normalized_sentences) :
     model = Word2Vec(normalized_sentences,
@@ -70,11 +72,29 @@ def vectorize_reviews(data, trained_model) :
 
 
 def merge_review_vectors(wine_review_vectors, data) :
-    data['normalized_descriptors'] = list(map(itemgetter(0), wine_review_vectors))
-    data['review_vector'] = list(map(itemgetter(1), wine_review_vectors))
-    data['descriptor_count'] = list(map(itemgetter(2), wine_review_vectors))
 
-    return data
+    new_data = copy.deepcopy(data)
+    new_data['normalized_descriptors'] = list(map(itemgetter(0), wine_review_vectors))
+    new_data['review_vector'] = list(map(itemgetter(1), wine_review_vectors))
+    new_data['descriptor_count'] = list(map(itemgetter(2), wine_review_vectors))
+
+    return new_data
+
+def train_knn(df_mincount) :
+    review_vectors_listed = list(df_mincount["review_vector"])
+    knn = NearestNeighbors(n_neighbors=10, algorithm="brute", metric="cosine")
+    knn_trained = knn.fit(review_vectors_listed)
+
+    return knn_trained
+
+def find_neighbors(occasion) :
+    model = load_model_knn()
+    distance, indice = model.kneighbors([occasion], n_neighbors=10,return_distance=True)
+    distance_list = distance[0].tolist()[:]
+    indice_list = indice[0].tolist()[:]
+
+    return indice_list
+
 
 
 

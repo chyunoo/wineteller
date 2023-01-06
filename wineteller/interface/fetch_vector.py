@@ -13,19 +13,18 @@ def similar_word(word,n) :
    return model.wv.most_similar(positive=word, topn=int(n))
 
 
-def fetch_vector(word) :
+def fetch_vector(words) :
+    """
+    fetch vector
+    """
+    model = load_model()
+    list_ = []
+    for w in words :
+        if w in model.wv.index_to_key :
+            list_.append(model.wv[w])
+            #print(f'{w} not found')
 
-    # model = load_model()
-    # list_ = []
-    # for w in word :
-
-    #     try :
-    #         list_.append(model.wv[w])
-    #     except KeyError :
-    #         continue
-
-    # return list_
-    pass
+    return list_
 
 
 if __name__ == '__main__':
