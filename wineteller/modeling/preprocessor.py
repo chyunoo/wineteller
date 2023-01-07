@@ -1,5 +1,5 @@
-from wineteller.preprocessing import *
-from wineteller.import_data import *
+from wineteller.modeling.preprocessing import *
+from wineteller.modeling.import_data import *
 
 import numpy as np
 import pandas as pd
@@ -45,16 +45,13 @@ def preprocess_text(data : pd.DataFrame) -> list :
     """
     allow below if you want to save locally preprocessed_text
     """
-    # if len(preprocessed_text) > 0 :
-    #     file_path= os.path.join(os.path.dirname(os.path.dirname(__file__)),
-    #                             "raw_data", timestamp + ".preprocessed")
-    #     with open(file_path, "wb") as file:
-    #         pickle.dump(preprocessed_text, file)
-    #         print(f"saved locally at {file_path}")
+    if len(preprocessed_text) > 0 :
+        file_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                                "raw_data", timestamp + ".preprocessed")
+        with open(file_path, "wb") as file:
+            pickle.dump(preprocessed_text, file)
+            print(f"saved locally at {file_path}")
 
     print("\n ✅ text processed")
 
     return preprocessed_text
-
-
-#### add executing time ####
