@@ -6,5 +6,8 @@ raw_data/
 *.csv
 **/__pycache__/
 .env
-mpa-config/
+
+.python-version
 notebooks/
+mpa-config/
+
