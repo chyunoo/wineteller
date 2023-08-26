@@ -68,8 +68,10 @@ def get_preprocessed_data(name) :
     name = name+".csv"
     csv_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"raw_data", "preprocessed_data", name)
 
-    preprocessed = pd.read_csv(csv_path)
-    df_mincount = preprocessed[preprocessed["descriptor_count"]>0]
-    df_mincount["review_vector"]=[np.float_(i[2:-2].split()) for i in df_mincount["review_vector"]]
+    #preprocessed = pd.read_csv(csv_path) # production
+    preprocessed = pd.read_csv(csv_path, index_col=0,  keep_default_na=False)
+    #df_mincount = preprocessed[preprocessed["descriptor_count"]>0] #removed from prod
+    #df_mincount["review_vector"]=[np.float_(i[2:-2].split()) for i in df_mincount["review_vector"]] # removed from prod
 
-    return df_mincount
+    #return df_mincount production
+    return preprocessed
