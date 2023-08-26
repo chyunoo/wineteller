@@ -60,8 +60,8 @@ def load_model_knn() -> NearestNeighbors :
     load the latest saved model, return None if no model found
     """
     model_directory= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                                "raw_data", "trained_model")
-
+                                "notebooks")
+    print(model_directory)
     results = glob.glob(f"{model_directory}/*knn*")
     if not results:
         return None

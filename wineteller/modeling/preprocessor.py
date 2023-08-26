@@ -34,9 +34,9 @@ def preprocess_text(data : pd.DataFrame) -> list :
     phrased_sentences = phrase_text(normalized_sentences)
     print(f"✔️ text phrased : {len(phrased_sentences)}")
 
-    mp = get_data("descriptor_mapping")
-    fmp = filtered_descriptor_mapping(mp)
-    print(f"✔️ imported mapping : {len(fmp)} raw descriptors")
+    #mp = get_data("descriptor_mapping") #we need full mapping
+    #fmp = filtered_descriptor_mapping(mp) #we need full mapping
+    #print(f"✔️ imported mapping : {len(fmp)} raw descriptors") #we need full mapping
 
     print(f"mapping {len(phrased_sentences)} sentences ...")
     preprocessed_text = mapping_text(phrased_sentences)

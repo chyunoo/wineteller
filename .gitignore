@@ -8,6 +8,5 @@ raw_data/
 .env
 
 .python-version
-notebooks/
+notebooks/wineteller_nb.ipynb
 mpa-config/
-

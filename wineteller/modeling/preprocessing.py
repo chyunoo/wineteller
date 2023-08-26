@@ -6,6 +6,8 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from gensim.models.phrases import Phrases, Phraser
 import pandas as pd
 import numpy as np
+from wineteller.modeling.import_data import *
+
 
 
 from .params import MAPPING
@@ -129,16 +131,29 @@ def mapper(word):
     else:
         return ""
 
+def full_mapper(word):
+    """
+    define function to map words with the full descriptor mapping (stored in
+    params module)
+    """
+    mp = get_data("descriptor_mapping")
+    if word in list(mp.index):
+        print(f"mapping {word}...")
+        normalized_word =mp['level_3'][word]
+        print(f"...{normalized_word}✔️")
+        return normalized_word
+    else:
+        return ""
+
 def mapping_text(phrased_sentences : list) -> list:
     """
     apply mapper on sentences
     """
-
     mapped_sentences = []
     for sent in phrased_sentences:
         mapped_sentence = []
         for word in sent:
-            mapped_word = mapper(word)
+            mapped_word = full_mapper(word) # we need full mapping
             if mapped_word != "" :
                 mapped_sentence.append(str(mapped_word))
             else :

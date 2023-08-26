@@ -8,7 +8,7 @@ from wineteller.modeling.model import merge_review_vectors, vectorize_reviews, w
 from wineteller.modeling.preprocessor import preprocess_text
 from wineteller.modeling.registry import save_model, load_model
 from wineteller.modeling.vectorize import clean_survey
-from wineteller.modeling.preprocessing import preprocess_user_input
+#from wineteller.modeling.preprocessing import preprocess_user_input
 
 
 def preprocess_and_train() :
@@ -43,7 +43,7 @@ def preprocess_and_train() :
 
     # save into csv
     csv_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                                "raw_data","preprocessed_data", "processed_cols_full.csv")
+                                "raw_data","preprocessed_data", "processed_cols_full_1009.csv")
 
     vectorized_df.to_csv(csv_path,
                          mode = "w",

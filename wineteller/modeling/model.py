@@ -90,7 +90,7 @@ def train_knn(df_mincount) :
 def find_neighbors(occasion) :
     model = load_model_knn()
     distance, indice = model.kneighbors([occasion], n_neighbors=10,return_distance=True)
-    distance_list = distance[0].tolist()[:]
+    #distance_list = distance[0].tolist()[:]
     indice_list = indice[0].tolist()[:]
 
     return indice_list
