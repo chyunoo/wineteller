@@ -66,7 +66,7 @@ def clean_wine_data(data : pd.DataFrame, keep_columns = False) -> pd.DataFrame:
 
 def get_preprocessed_data(name) :
     name = name+".csv"
-    csv_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"raw_data", "preprocessed_data", name)
+    csv_path= os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),"raw_data", "old", name)
 
     #preprocessed = pd.read_csv(csv_path) # production
     preprocessed = pd.read_csv(csv_path, index_col=0,  keep_default_na=False)

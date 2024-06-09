@@ -89,14 +89,8 @@ def train_knn(df_mincount) :
 
 def find_neighbors(occasion) :
     model = load_model_knn()
+    avg_occasion = sum(occasion) / len(occasion)
     distance, indice = model.kneighbors([occasion], n_neighbors=10,return_distance=True)
-    #distance_list = distance[0].tolist()[:]
     indice_list = indice[0].tolist()[:]
 
     return indice_list
-
-
-
-
-
-#### fit and find k-neighbors of a point function ####

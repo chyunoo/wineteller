@@ -98,19 +98,3 @@ def vectorize_survey(test) :
         final[w]=np.mean(final[w],axis=1)
 
     return final
-
-
-#
-#survey = get_data("Survey")
-#cleaned = clean_survey(survey)
-#vectorized_survey = vectorize_survey(cleaned)
-#print(type(vectorized_survey))
-##print(vectorized_survey)
-#
-## Save
-#dictionary = vectorized_survey
-#np.save('vectorized_survey.npy', dictionary)
-#print("dictionary saved")
-#
-#read_dictionary = np.load('vectorized_survey.npy',allow_pickle='TRUE').item()
-##print(read_dictionary["drunk"]) # test
