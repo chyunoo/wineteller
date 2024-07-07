@@ -24,7 +24,7 @@ The current model is not exempt of limitations. One can argue that the choice of
 Both of wineteller v0 and v1 are static models, that can not be fine-tuned through training. This mostly stems from the lack of a way to evaluate the performance of our model. However, we plan to switch gradually to an iterable version of our model, checkout our roadmap below.
 
 # 💎 Current features
-* ** 🥂 Occasion-wine pairing** : describe your occasion (romantic, moody, casual, fancy) and get wine recommendations
+* **🥂 Occasion-wine pairing** : describe your occasion (romantic, moody, casual, fancy) and get wine recommendations
 * **📊 Wine recommendation visualization** : view your wine recommendation's profile
 * **🤖 Sommelier justification widget** : learn more about how your wine recommendation was made 
 
