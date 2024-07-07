@@ -1,4 +1,4 @@
-Born at Le Wagon Paris (#885) as part of the final project and motivated by this post from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our [app](https://wineteller.streamlit.app/)
+Born at Le Wagon Paris (#885) as part of the final project and motivated by this [poster](https://shop.winefolly.com/products/how-to-choose-wine?_gl=1%2A1ikmdky%2A_ga%2AMTQ5MjQ1MjEwNi4xNzIwMzgxMjY3%2A_ga_J39YF5X2EX%2AMTcyMDM4MTI2Ny4xLjEuMTcyMDM4MTI3Mi41NS4wLjA.) from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our [app](https://wineteller.streamlit.app/)
 
 # Context
 
@@ -17,12 +17,12 @@ Our second model (wineteller v1), which is currently deployed, is inspired by Ro
 
 The current model is not exempt of limitations. One can argue that the choice of words defining each occasion is biased as not all wines with flower notes are suitable for a romantic occasion, elegant, classy do not have the same meaning in everyday and wine language. This is especially true as the validity of the model relies heavily on how we define our occasion attributes. We do not claim that our model yields the best performance in matching wine with occasion (as such performance criterion is yet to be defined) but we believe it demonstrates a novel approach to wine pairing that can be refined gradually.
 
-Both of wineteller v0 and v1 suffer from a key limitation : they can not be evaluated (since they are not trained). wineteller v2
+Both of wineteller v0 and v1 are static models, that can not be fine-tuned through training. This mostly stems from the lack of a way to evaluate the performance of our model. However, we plan to switch gradually to an iterable version of our model, checkout our roadmap below.
 
 # Current features
-Occasion-wine pairing :
-Wine recommendation visualization :
-Sommelier justification widget :
+* **Occasion-wine pairing** : describe your occasion (romantic, moody, casual, fancy) and get wine recommendations
+* **Wine recommendation visualization** : view your wine recommendation's profile
+* **Sommelier justification widget** : learn more about how your wine recommendation was made 
 
 # Roadmap
 * Allow language switch, french in particular (user request)
