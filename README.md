@@ -1,4 +1,4 @@
-![Image](wineteller_logo_v1.png)
+![Image](wineteller_logo_v1_reduced.png)
 
 Born at Le Wagon Paris (#885) as part of the final project and motivated by this [poster](https://shop.winefolly.com/products/how-to-choose-wine?_gl=1%2A1ikmdky%2A_ga%2AMTQ5MjQ1MjEwNi4xNzIwMzgxMjY3%2A_ga_J39YF5X2EX%2AMTcyMDM4MTI2Ny4xLjEuMTcyMDM4MTI3Mi41NS4wLjA.) from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our [app](https://wineteller.streamlit.app/)
 
