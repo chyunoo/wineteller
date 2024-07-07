@@ -21,7 +21,7 @@ Our second model (wineteller v1), which is currently deployed [🚀,](https://wi
 
 The current model is not exempt of limitations. One can argue that the choice of words defining each occasion is biased as not all wines with flower notes are suitable for a romantic occasion, that _elegant, classy_ do not have the same meaning in everyday and wine language. This is especially true as the validity of the model relies heavily on how we define our initial occasion attributes. We do not claim that our model yields the best performance in matching wine with occasion (as such performance criterion is yet to be defined) but we believe it demonstrates a novel approach to wine pairing that can be refined gradually.
 
-Both of wineteller v0 and v1 are static models, that can not be fine-tuned through training. This mostly stems from the lack of a way to evaluate the performance of our model. However, we plan to switch gradually to an iterable version of our model, checkout our roadmap below.
+Both of wineteller v0 and v1 are static models, that can not be fine-tuned through training. This mostly stems from the lack of a way to evaluate the performance of our model. However, we plan to switch gradually to an iterable version of our model, cf. our roadmap below.
 
 # Current features
 * **🥂 Occasion-wine pairing** : describe your occasion (romantic, moody, casual, fancy) and get wine recommendations
