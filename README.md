@@ -1,6 +1,6 @@
-Born at Le Wagon Paris (850) as part of the final project and motivated by this post from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our app
+Born at Le Wagon Paris (#885) as part of the final project and motivated by this post from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our [app](https://wineteller.streamlit.app/)
 
-### Context
+# Context
 
 Picking a wine bottle is not always an easy exercise : mostly because some of us don't know squat about wine and the other reason may be the way too large number of options that we are given at the wine corner of the market. Usually we have either the option to ask for a wine expert or to simply use one of the widely spread wine apps (e.g Vivino, to name one)
 
@@ -8,7 +8,7 @@ While these conventional methods are handy, we think that they miss out on one k
 
 Matching the characteristics of wine (such as acidity, body, length) with a specific context is challenging : on one hand, there is little evidence that matching wine with an occasion provides a better experience than simply choosing a good wine. On the other hand, wine characteristics and social characteristics are not fundamentally related, meaning that we need a "bridge" between them to make them comparable and matchable. This will likely lead to simplifications both on oenology and data science sides. However, we think that matching wine with context has the potential to improve the global wine experience by getting rid off the necessity of wine knowledge and recommending the wine that is likely to be enjoyable by the whole group.
 
-### Framework
+# Framework
 Our model takes an occasion (i.e a description) as an input to generate a wine recommendation as an output.
 
 An old version of the model (wineteller v0) is available here. It leveraged a survey results where participants were asked to assess for a given occasion (e.g drinking with colleagues, with friends, at home, etc) which intensity of wine characteristics were the most suitable (e.g how much body, how much sweetness, etc). Each occasion and each wine were converted to a set of wine words represented as vectors, using a word vectors model trained on wine tasting notes. A knn model then performed the pairing, by putting together occasions and wines that contained similar words. This approach was quickly abandonned due to two reasons : it was unable to match occasions that were out of the scope of the survey and leveraged a subset of wine words (complexity, body, length, sweetness, alcohol) that yield a low diversity of occasions and wines.
@@ -19,12 +19,12 @@ The current model is not exempt of limitations. One can argue that the choice of
 
 Both of wineteller v0 and v1 suffer from a key limitation : they can not be evaluated (since they are not trained). wineteller v2
 
-### Current features
+# Current features
 Occasion-wine pairing :
 Wine recommendation visualization :
 Sommelier justification widget :
 
-### Roadmap
+# Roadmap
 * Allow language switch, french in particular (user request)
 * Allow to re-shuffle wine recommendations
 * Allow to select region, wine style
