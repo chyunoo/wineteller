@@ -6,8 +6,6 @@
 *.env
 .python-version
 
-raw_data/
+*raw_data/
 notebooks_backup/
-wineteller_v0/raw_data/
-wineteller_v0/preprocessed_data/
-wineteller_v1/preprocessed_data/
+*preprocessed_data/
