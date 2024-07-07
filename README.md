@@ -1,74 +1,32 @@
-# Data analysis
-- Document here the project: wineteller
-- Description: Project Description
-- Data Source:
-- Type of analysis:
+Born at Le Wagon Paris (850) as part of the final project and motivated by this post from winefolly, wineteller is a wine recommendation app that uses data science to pair the characteristics of a wine with the tone of an occasion. Check our app
 
-Please document the project the better you can.
+### Context
 
-# Startup the project
+Picking a wine bottle is not always an easy exercise : mostly because some of us don't know squat about wine and the other reason may be the way too large number of options that we are given at the wine corner of the market. Usually we have either the option to ask for a wine expert or to simply use one of the widely spread wine apps (e.g Vivino, to name one)
 
-The initial setup.
+While these conventional methods are handy, we think that they miss out on one key variable, that is the social context in which a wine bottle is opened. In our daily life, picking a wine bottle does not happen in an abstract setting where we aim for the best wine possible, that is the one with the best rating, the best taste or the best château. Rather, we aim for a decent bottle, which characteristics are likely to correspond to the specificity of an audience, such as the intimacy, casuality and wine knowledge one shares with the encoutered people. In other words, in the real word, it's not about picking a good bottle, but the right one.
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+Matching the characteristics of wine (such as acidity, body, length) with a specific context is challenging : on one hand, there is little evidence that matching wine with an occasion provides a better experience than simply choosing a good wine. On the other hand, wine characteristics and social characteristics are not fundamentally related, meaning that we need a "bridge" between them to make them comparable and matchable. This will likely lead to simplifications both on oenology and data science sides. However, we think that matching wine with context has the potential to improve the global wine experience by getting rid off the necessity of wine knowledge and recommending the wine that is likely to be enjoyable by the whole group.
 
-Unittest test:
-```bash
-make clean install test
-```
+### Framework
+Our model takes an occasion (i.e a description) as an input to generate a wine recommendation as an output.
 
-Check for wineteller in gitlab.com/{group}.
-If your project is not set please add it:
+An old version of the model (wineteller v0) is available here. It leveraged a survey results where participants were asked to assess for a given occasion (e.g drinking with colleagues, with friends, at home, etc) which intensity of wine characteristics were the most suitable (e.g how much body, how much sweetness, etc). Each occasion and each wine were converted to a set of wine words represented as vectors, using a word vectors model trained on wine tasting notes. A knn model then performed the pairing, by putting together occasions and wines that contained similar words. This approach was quickly abandonned due to two reasons : it was unable to match occasions that were out of the scope of the survey and leveraged a subset of wine words (complexity, body, length, sweetness, alcohol) that yield a low diversity of occasions and wines.
 
-- Create a new project on `gitlab.com/{group}/wineteller`
-- Then populate it:
+Our second model (wineteller v1), which is currently deployed, is inspired by Roald Shuring's model that pairs wine with food by leveraging core taste scores(fat, acidity, bitter, etc) calculated by grouping food items that denote the most each core taste. This approach allows to compare and match wine against food by identifying words that have a similar meaning in both lexical fields. Similarly, our model leverages a set of core occasion attributes (romantic, casual, fancy, moody) to score wines across these attributes. Each occasion is converted into a set of wine words that evokes a specific lexical field : for instance romantic is compounded with wine words denoting flowers, fancy is compounded with wine words denoting sophistication (elegant, classy), etc. Such occasion attributes can be represented as an average vector and used to calculate a score between 0 and 1 from the similarity with each wine of the dataset. The pairing becomes much more straightforward : the recommendation is the list of wines that match the occasion scores that are requested by the user.
 
-```bash
-##   e.g. if group is "{group}" and project_name is "wineteller"
-git remote add origin git@github.com:{group}/wineteller.git
-git push -u origin master
-git push -u origin --tags
-```
+The current model is not exempt of limitations. One can argue that the choice of words defining each occasion is biased as not all wines with flower notes are suitable for a romantic occasion, elegant, classy do not have the same meaning in everyday and wine language. This is especially true as the validity of the model relies heavily on how we define our occasion attributes. We do not claim that our model yields the best performance in matching wine with occasion (as such performance criterion is yet to be defined) but we believe it demonstrates a novel approach to wine pairing that can be refined gradually.
 
-Functionnal test with a script:
+Both of wineteller v0 and v1 suffer from a key limitation : they can not be evaluated (since they are not trained). wineteller v2
 
-```bash
-cd
-mkdir tmp
-cd tmp
-wineteller-run
-```
+### Current features
+Occasion-wine pairing :
+Wine recommendation visualization :
+Sommelier justification widget :
 
-# Install
-
-Go to `https://github.com/{group}/wineteller` to see the project, manage issues,
-setup you ssh public key, ...
-
-Create a python3 virtualenv and activate it:
-
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
-
-Clone the project and install it:
-
-```bash
-git clone git@github.com:{group}/wineteller.git
-cd wineteller
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-wineteller-run
-```
+### Roadmap
+* Allow language switch, french in particular (user request)
+* Allow to re-shuffle wine recommendations
+* Allow to select region, wine style
+* Allow to explore full wine dataset (by chunks)
+* Create a performance metric
